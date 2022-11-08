@@ -2,7 +2,7 @@
   "name": "mini-project",
   "version": "1.0.0",
   "private": true,
-  "description": "小程序开箱即用模版",
+  "description": "我们的联赛",
   "templateInfo": {
     "name": "default",
     "typescript": true,
