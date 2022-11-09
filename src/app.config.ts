@@ -6,6 +6,10 @@ export default defineAppConfig({
     'pages/index/index',
     'pages/pagination/index',
     'pages/tabAndSearchPagination/index',
+    'pages/schedule/index',
+    'pages/score/index',
+    'pages/player/index',
+    'pages/team/index',
   ],
   window: {
     // @ts-ignore

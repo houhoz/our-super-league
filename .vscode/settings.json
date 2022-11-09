@@ -20,5 +20,11 @@
     "overrideConfigFile": "eslint.config.js"
   },
   "stylelint.enable": true,
-  "stylelint.configFile": "stylelint.config.js"
+  "stylelint.configFile": "stylelint.config.js",
+  "cSpell.words": [
+    "antmjs",
+    "Tabbar",
+    "tarojs",
+    "vantui"
+  ]
 }
