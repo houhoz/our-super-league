@@ -43,13 +43,15 @@ export default Unite(
             <View className="players">
               <Row className="players-title">
                 <Col span="4">排名</Col>
-                <Col span="12">球员/球队</Col>
+                <Col span="6">球员</Col>
+                <Col span="6">球队</Col>
                 <Col span="4">进球</Col>
                 <Col span="4">点球</Col>
               </Row>
               <Row className="players-item">
                 <Col span="4">1</Col>
-                <Col span="12">手术刀/方片♦️</Col>
+                <Col span="6">手术刀</Col>
+                <Col span="6">方片♦️</Col>
                 <Col span="4">2</Col>
                 <Col span="4">1</Col>
               </Row>
