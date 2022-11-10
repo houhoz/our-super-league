@@ -1,4 +1,3 @@
-import { useRecoilState } from 'recoil'
 import {
   Tabbar,
   TabbarItem,
@@ -9,48 +8,26 @@ import {
 } from '@antmjs/vantui'
 import { Unite } from '@antmjs/unite'
 import { View } from '@tarojs/components'
-import { useReachBottom, navigateTo } from '@tarojs/taro'
+import { redirectTo } from '@tarojs/taro'
 import Container from '@/components/container'
-import { getRoleListCommon } from '@/actions/simple/common'
-import { menuButtonStore } from '@/store'
 import './index.less'
 
 export default Unite(
   {
     state: {
-      info: null,
-      active: 2,
+      active: 3,
       activeKey: 0,
-    },
-    async onLoad() {
-      // const datap = await petClient.addPet({
-      //   body: { name: 'xx', photoUrls: ['xxx'] },
-      // })
-      const data = await getRoleListCommon({})
-      this.setState({
-        info: data,
-      })
     },
   },
   function ({ state, events }) {
-    useReachBottom(() => {
-      console.log(999)
-    })
-    const { setHooks, setState } = events
-    const { info, active, activeKey } = state
-    const [menuButton, setMenuButton]: any = useRecoilState(menuButtonStore)
-    // 可以将hooks的数据传递到实例上面，可以通过this.hooks['xxx']获取到，不过hooks是异步的，所以在不同的阶段取值有可能取不到，这是由业务决定的
-    setHooks({
-      xxx: menuButton,
-      yyy: setMenuButton,
-    })
+    const { setState } = events
+    const { active, activeKey } = state
     return (
       <Container
-        navTitle="首页"
+        navTitle="球队榜"
         className="pages-team-index"
         enablePagePullDownRefresh={true}
-        loading={!info}
-        useNav={false}
+        loading={false}
         useMenuBtns={false}
       >
         <View className="team-wrap">
@@ -104,13 +81,13 @@ export default Unite(
           onChange={(e) => {
             switch (e.detail) {
               case 0:
-                navigateTo({ url: '/pages/schedule/index' })
+                redirectTo({ url: '/pages/schedule/index' })
                 break
               case 1:
-                navigateTo({ url: '/pages/score/index' })
+                redirectTo({ url: '/pages/score/index' })
                 break
-              case 3:
-                navigateTo({ url: '/pages/team/index' })
+              case 2:
+                redirectTo({ url: '/pages/player/index' })
                 break
               default:
                 break

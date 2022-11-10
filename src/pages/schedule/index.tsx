@@ -1,7 +1,7 @@
-import { Tabbar, TabbarItem, Row, Col, Sticky } from '@antmjs/vantui'
+import { Tabbar, TabbarItem, Row, Col } from '@antmjs/vantui'
 import { Unite } from '@antmjs/unite'
 import { View } from '@tarojs/components'
-import { navigateTo } from '@tarojs/taro'
+import { redirectTo } from '@tarojs/taro'
 import Container from '@/components/container'
 import './index.less'
 
@@ -62,21 +62,18 @@ export default Unite(
         className="pages-schedule-index"
         enablePagePullDownRefresh={true}
         loading={false}
-        useNav={false}
         useMenuBtns={false}
       >
-        <Sticky>
-          <Row className="schedule-title">
-            <Col span="8">时间</Col>
-            <Col span="6" style={{ textAlign: 'right' }}>
-              主队
-            </Col>
-            <Col span="4">比分</Col>
-            <Col span="6" style={{ textAlign: 'left' }}>
-              客队
-            </Col>
-          </Row>
-        </Sticky>
+        <Row className="schedule-title">
+          <Col span="8">时间</Col>
+          <Col span="6" style={{ textAlign: 'right' }}>
+            主队
+          </Col>
+          <Col span="4">比分</Col>
+          <Col span="6" style={{ textAlign: 'left' }}>
+            客队
+          </Col>
+        </Row>
         <View>
           {schedules.map((item, index) => {
             return (
@@ -105,13 +102,13 @@ export default Unite(
           onChange={(e) => {
             switch (e.detail) {
               case 1:
-                navigateTo({ url: '/pages/score/index' })
+                redirectTo({ url: '/pages/score/index' })
                 break
               case 2:
-                navigateTo({ url: '/pages/player/index' })
+                redirectTo({ url: '/pages/player/index' })
                 break
               case 3:
-                navigateTo({ url: '/pages/team/index' })
+                redirectTo({ url: '/pages/team/index' })
                 break
               default:
                 break

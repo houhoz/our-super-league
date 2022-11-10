@@ -1,59 +1,33 @@
-import { useRecoilState } from 'recoil'
-import { Tabbar, TabbarItem, Row, Col, Sticky } from '@antmjs/vantui'
+import { Tabbar, TabbarItem, Row, Col } from '@antmjs/vantui'
 import { Unite } from '@antmjs/unite'
-import { useReachBottom, navigateTo } from '@tarojs/taro'
+import { redirectTo } from '@tarojs/taro'
 import Container from '@/components/container'
-import { getRoleListCommon } from '@/actions/simple/common'
-import { menuButtonStore } from '@/store'
 import './index.less'
 
 export default Unite(
   {
     state: {
-      info: null,
       active: 1,
     },
-    async onLoad() {
-      // const datap = await petClient.addPet({
-      //   body: { name: 'xx', photoUrls: ['xxx'] },
-      // })
-      const data = await getRoleListCommon({})
-      this.setState({
-        info: data,
-      })
-    },
   },
-  function ({ state, events }) {
-    useReachBottom(() => {
-      console.log(999)
-    })
-    const { setHooks } = events
-    const { info, active } = state
-    const [menuButton, setMenuButton]: any = useRecoilState(menuButtonStore)
-    // 可以将hooks的数据传递到实例上面，可以通过this.hooks['xxx']获取到，不过hooks是异步的，所以在不同的阶段取值有可能取不到，这是由业务决定的
-    setHooks({
-      xxx: menuButton,
-      yyy: setMenuButton,
-    })
+  function ({ state }) {
+    const { active } = state
     return (
       <Container
-        navTitle="首页"
+        navTitle="积分榜"
         className="pages-score-index"
         enablePagePullDownRefresh={true}
-        loading={!info}
-        useNav={false}
+        loading={false}
         useMenuBtns={false}
       >
-        <Sticky>
-          <Row className="score-title">
-            <Col span="2">排名</Col>
-            <Col span="6">球队</Col>
-            <Col span="2">场次</Col>
-            <Col span="5">胜/平/负</Col>
-            <Col span="5">进/失球</Col>
-            <Col span="4">积分</Col>
-          </Row>
-        </Sticky>
+        <Row className="score-title">
+          <Col span="2">排名</Col>
+          <Col span="6">球队</Col>
+          <Col span="2">场次</Col>
+          <Col span="5">胜/平/负</Col>
+          <Col span="5">进/失球</Col>
+          <Col span="4">积分</Col>
+        </Row>
         <Row className="score-item">
           <Col span="2">1</Col>
           <Col span="6">方片♦️</Col>
@@ -67,13 +41,13 @@ export default Unite(
           onChange={(e) => {
             switch (e.detail) {
               case 0:
-                navigateTo({ url: '/pages/schedule/index' })
+                redirectTo({ url: '/pages/schedule/index' })
                 break
               case 2:
-                navigateTo({ url: '/pages/player/index' })
+                redirectTo({ url: '/pages/player/index' })
                 break
               case 3:
-                navigateTo({ url: '/pages/team/index' })
+                redirectTo({ url: '/pages/team/index' })
                 break
               default:
                 break
